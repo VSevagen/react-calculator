@@ -5,12 +5,18 @@ import styled from "styled-components";
 import Keypad from "../Keypad";
 import Result from "../Result";
 
+/*
+* Main component to be rendered
+* @param {Int} displayNum - number to be displayed on calculator
+* @param {Function} setDisplayNum - function used to set displayNum
+* @param {Object} ref - object containing accumulator array to store numbers and operators
+*/
 const Calculator = () => {
   const [displayNum, setDisplayNum] = useState(0);
   const accumulator = useRef([]);
   return(
     <Wrapper>
-      <Result displayNum={displayNum}/>
+      <Result displayNum={displayNum} />
       <Keypad
         displayNum={displayNum}
         setDisplayNum={setDisplayNum}

@@ -2,12 +2,12 @@ import React from "react";
 
 import styled from "styled-components";
 
+/*
+* Output component of Calculator
+* @props {Int} displayNum - output value of calculator
+*/
 const Result = (props) => {
-  return(
-    <Display>
-      {props.displayNum}
-    </Display>
-  )
+  return <Display>{props.displayNum}</Display>
 }
 
 const Display = styled.div`
