@@ -6,17 +6,17 @@ import Keypad from '../Keypad';
 import Result from '../Result'
 
 const Calculator = () => {
-    const [displayNum, setDisplayNum] = useState(0);
-    const accumulator = useRef([]);
-    return(
-        <Wrapper>
-            <Result displayNum={displayNum}/>
-            <Keypad
-                displayNum={displayNum}
-                setDisplayNum={setDisplayNum}
-                accumulator={accumulator}
-            />
-        </Wrapper>
+  const [displayNum, setDisplayNum] = useState(0);
+  const accumulator = useRef([]);
+  return(
+    <Wrapper>
+      <Result displayNum={displayNum}/>
+      <Keypad
+        displayNum={displayNum}
+        setDisplayNum={setDisplayNum}
+        accumulator={accumulator}
+      />
+    </Wrapper>
     )
 }
 

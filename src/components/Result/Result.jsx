@@ -3,11 +3,11 @@ import React from 'react';
 import styled from 'styled-components'
 
 const Result = (props) => {
-    return(
-        <Display>
-            {props.displayNum}
-        </Display>
-    )
+  return(
+    <Display>
+      {props.displayNum}
+    </Display>
+  )
 }
 
 const Display = styled.div`
