@@ -173,11 +173,17 @@ grid-column-end: ${
     props => props.value === 0
     ? "span 3" : "span 1"
 };
+:hover {
+	background-color: #3b3d3b;
+}
 `
 
 const OperationButton = styled(Button)`
 color: white;
 background-color: #d4820f;
+:hover {
+	background-color: #b8710d;
+}
 `;
 
 export default Keypad;
