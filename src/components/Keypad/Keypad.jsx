@@ -43,12 +43,12 @@ const Keypad = (props) => {
     updateDisplay: true,
   });
 
-	/*
-	* Calculates the output base on the numbers and operator provided
-	* @param {String} num_1 - string value of first number pressed
-	* @param {String} num_2 - string value of second number pressed
-	* @param {String} operator - mathematical operator to evaluate the 2 numbers
-	*/
+  /*
+  * Calculates the output base on the numbers and operator provided
+  * @param {String} num_1 - string value of first number pressed
+  * @param {String} num_2 - string value of second number pressed
+  * @param {String} operator - mathematical operator to evaluate the 2 numbers
+  */
   const handleMathsOperation = (num_1, num_2, operator) => {
     switch(operator) {
       case "+":
@@ -62,10 +62,10 @@ const Keypad = (props) => {
     }
   }
 
-	/*
-	* Handles process to be followed after an operation button is pressed
-	* @param {Object} event - returns bunch of information on the button pressed
-	*/
+  /*
+  * Handles process to be followed after an operation button is pressed
+  * @param {Object} event - returns bunch of information on the button pressed
+  */
   const handleOperation = (event) => {
     // When user pressed equal button, we'll proceed with calculation
     // of the output based on the values accumulated in the accumulator array
@@ -105,10 +105,10 @@ const Keypad = (props) => {
     }
   }
 
-	/*
-	* Handles process to be followed after a number button is pressed
-	* @param {Object} event - returns bunch of information on the button pressed
-	*/
+  /*
+  * Handles process to be followed after a number button is pressed
+  * @param {Object} event - returns bunch of information on the button pressed
+  */
   const handleNumber = (event) => {
     if(ref.current.updateDisplay) {
       setDisplayNum(event.target.value);
