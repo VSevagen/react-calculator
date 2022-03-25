@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef} from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Keypad from '../Keypad';
-import Result from '../Result'
+import Keypad from "../Keypad";
+import Result from "../Result";
 
 const Calculator = () => {
   const [displayNum, setDisplayNum] = useState(0);
