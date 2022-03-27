@@ -53,12 +53,13 @@ const Keypad = (props) => {
     switch(operator) {
       case "+":
         return parseInt(num_1) + parseInt(num_2);
-          case "-":
-            return parseInt(num_1) - parseInt(num_2);
-          case "/":
-            return parseInt(num_1) / parseInt(num_2);
-          case "*":
-            return parseInt(num_1) * parseInt(num_2);
+      case "-":
+        return parseInt(num_1) - parseInt(num_2);
+      case "/":
+        return parseInt(num_1) / parseInt(num_2);
+      case "*":
+        return parseInt(num_1) * parseInt(num_2);
+      default:
     }
   }
 
