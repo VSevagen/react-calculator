@@ -41,10 +41,16 @@ const Keypad = (props) => {
   const {setDisplayNum, displayNum, accumulator} = props;
   const ref = useRef({
     updateDisplay: true,
+    isConcatenating: false,
+    new_accumulator: null,
   });
 
   useEffect(() => {
-    accumulator.current.push(parseInt(displayNum));
+    if(ref.current.isConcatenating === true) {
+      ref.current.new_accumulator = displayNum;
+    } else {
+      accumulator.current.push(parseInt(displayNum));
+    }
   }, [displayNum, accumulator])
 
   /*
@@ -74,6 +80,13 @@ const Keypad = (props) => {
   const handleOperation = (event) => {
     // When user pressed equal button, we'll proceed with calculation
     // of the output based on the values accumulated in the accumulator array
+    if(ref.current.new_accumulator !== null) {
+      accumulator.current.splice(accumulator.current.length-1, 1);
+      accumulator.current.push(ref.current.new_accumulator);
+      ref.current.new_accumulator = null;
+      ref.current.isConcatenating = false;
+    }
+
     if(event.target.value === "=") {
       let sum = 0;
       if (!(accumulator.current.length <= 1)) {
@@ -108,7 +121,6 @@ const Keypad = (props) => {
             accumulator.current[i] === "*"
           ) {
             if(sum === 0) {
-
               sum = handleMathsOperation(accumulator.current[i-1], accumulator.current[i+1], accumulator.current[i]);
             } else {
               sum = handleMathsOperation(sum, accumulator.current[i+1], accumulator.current[i]);
@@ -142,10 +154,13 @@ const Keypad = (props) => {
   */
   const handleNumber = (event) => {
     if(ref.current.updateDisplay) {
+      if(displayNum === event.target.value) {
+        accumulator.current.push(event.target.value);
+      }
       setDisplayNum(event.target.value);
       ref.current.updateDisplay = false;
-      accumulator.current.push(event.target.value);
     } else {
+      ref.current.isConcatenating = true;
       setDisplayNum(displayNum.concat(event.target.value));
     }
   }
