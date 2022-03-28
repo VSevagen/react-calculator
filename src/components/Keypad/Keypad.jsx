@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 import styled from "styled-components";
 
@@ -43,6 +43,10 @@ const Keypad = (props) => {
     updateDisplay: true,
   });
 
+  useEffect(() => {
+    accumulator.current.push(parseInt(displayNum));
+  }, [displayNum, accumulator])
+
   /*
   * Calculates the output base on the numbers and operator provided
   * @param {String} num_1 - string value of first number pressed
@@ -73,8 +77,30 @@ const Keypad = (props) => {
     if(event.target.value === "=") {
       let sum = 0;
       if (!(accumulator.current.length <= 1)) {
-        accumulator.current.push(displayNum);
         for(let i = 0;i < accumulator.current.length;i++) {
+          if(
+            accumulator.current[i] === "+" &&
+            accumulator.current[i+1] === "-"
+          ) {
+            accumulator.current.splice(i, 1);
+          }
+
+          if(
+            accumulator.current[i] === "-" &&
+            accumulator.current[i+1] === "+"
+          ) {
+            accumulator.current.splice(i+1, 1);
+          }
+
+          if
+          (
+            accumulator.current[i] === "-" &&
+            accumulator.current[i+1] === "-"
+          ) {
+            accumulator.current[i] = "+";
+            accumulator.current.splice(i+1, 1);
+          }
+
           if(
             accumulator.current[i] === "+" ||
             accumulator.current[i] === "-" ||
@@ -82,6 +108,7 @@ const Keypad = (props) => {
             accumulator.current[i] === "*"
           ) {
             if(sum === 0) {
+
               sum = handleMathsOperation(accumulator.current[i-1], accumulator.current[i+1], accumulator.current[i]);
             } else {
               sum = handleMathsOperation(sum, accumulator.current[i+1], accumulator.current[i]);
@@ -91,7 +118,7 @@ const Keypad = (props) => {
         // clearing accumulator since values have already been used
         accumulator.current = [];
 
-        // show calculated sum
+        // show calculated sum and push it to accumulator
         setDisplayNum(sum);
       }
     }
@@ -104,7 +131,7 @@ const Keypad = (props) => {
       // Push the number chosen by the user and the following operator
       //  to the accumulator array.
       // Reset updateDisplay to true for displayNum to be updated with new numbers
-      accumulator.current.push(displayNum, event.target.value);
+      accumulator.current.push(event.target.value);
       ref.current.updateDisplay = true;
     }
   }
@@ -117,6 +144,7 @@ const Keypad = (props) => {
     if(ref.current.updateDisplay) {
       setDisplayNum(event.target.value);
       ref.current.updateDisplay = false;
+      accumulator.current.push(event.target.value);
     } else {
       setDisplayNum(displayNum.concat(event.target.value));
     }
