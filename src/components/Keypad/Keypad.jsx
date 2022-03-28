@@ -72,27 +72,30 @@ const Keypad = (props) => {
     // of the output based on the values accumulated in the accumulator array
     if(event.target.value === "=") {
       let sum = 0;
-      accumulator.current.push(displayNum);
-      for(let i = 0;i < accumulator.current.length;i++) {
-        if(
-					accumulator.current[i] === "+" ||
-          accumulator.current[i] === "-" ||
-          accumulator.current[i] === "/" ||
-          accumulator.current[i] === "*"
-        ) {
-          if(sum === 0) {
-            sum = handleMathsOperation(accumulator.current[i-1], accumulator.current[i+1], accumulator.current[i]);
-          } else {
-            sum = handleMathsOperation(sum, accumulator.current[i+1], accumulator.current[i]);
+      if (!(accumulator.current.length <= 1)) {
+        accumulator.current.push(displayNum);
+        for(let i = 0;i < accumulator.current.length;i++) {
+          if(
+            accumulator.current[i] === "+" ||
+            accumulator.current[i] === "-" ||
+            accumulator.current[i] === "/" ||
+            accumulator.current[i] === "*"
+          ) {
+            if(sum === 0) {
+              sum = handleMathsOperation(accumulator.current[i-1], accumulator.current[i+1], accumulator.current[i]);
+            } else {
+              sum = handleMathsOperation(sum, accumulator.current[i+1], accumulator.current[i]);
+            }
           }
         }
-      }
-      // clearing accumulator since values have already been used
-      accumulator.current = [];
+        // clearing accumulator since values have already been used
+        accumulator.current = [];
 
-      // show calculated sum
-      setDisplayNum(sum);
-    } else if (event.target.value === "AC") {
+        // show calculated sum
+        setDisplayNum(sum);
+      }
+    }
+    else if (event.target.value === "AC") {
       // Reset displayNum, accumulator and updateDisplay to true;
       setDisplayNum(0);
       accumulator.current = [];
