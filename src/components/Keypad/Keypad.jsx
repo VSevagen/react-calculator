@@ -114,6 +114,16 @@ const Keypad = (props) => {
             accumulator.current.splice(i+1, 1);
           }
 
+          if
+          (
+            accumulator.current[i] === "*" &&
+            accumulator.current[i+1] === "-"
+          ) {
+            let val = 0 - accumulator.current[i+2];
+            accumulator.current.splice(i+1, 2);
+            accumulator.current.push(val);
+          }
+
           if(
             accumulator.current[i] === "+" ||
             accumulator.current[i] === "-" ||
