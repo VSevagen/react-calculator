@@ -13,14 +13,15 @@ import Result from "../Result";
 */
 const Calculator = () => {
   const [displayNum, setDisplayNum] = useState(0);
+  const [current, setCurrent] = useState(0);
   const accumulator = useRef([]);
   return(
     <Wrapper>
-      <Result displayNum={displayNum} />
+      <Result displayNum={displayNum} current={current} />
       <Keypad
-        displayNum={displayNum}
         setDisplayNum={setDisplayNum}
         accumulator={accumulator}
+        setCurrent={setCurrent}
       />
     </Wrapper>
     )
