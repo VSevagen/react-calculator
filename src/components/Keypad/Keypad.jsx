@@ -121,7 +121,7 @@ const Keypad = (props) => {
           ) {
             let val = 0 - accumulator.current[i+2];
             accumulator.current.splice(i+1, 2);
-            accumulator.current.push(val);
+            accumulator.current.splice(i+1, 0, val);
           }
 
           if(
