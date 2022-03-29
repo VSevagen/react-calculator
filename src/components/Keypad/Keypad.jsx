@@ -116,7 +116,10 @@ const Keypad = (props) => {
 
           if
           (
-            accumulator.current[i] === "*" &&
+            (
+              accumulator.current[i] === "*" ||
+              accumulator.current[i] === "/"
+            ) &&
             accumulator.current[i+1] === "-"
           ) {
             let val = 0 - accumulator.current[i+2];
